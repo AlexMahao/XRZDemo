@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#fff"
+    android:padding="5dp"
+    android:layout_width="match_parent" android:layout_height="200dp">
+
+    <ImageView
+        android:id="@+id/event_disc_more_img"
+        android:src="@mipmap/new_date"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+    <ImageView
+        android:src="@mipmap/morebg"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+    <TextView
+        android:id="@+id/event_disc_more_address"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:textColor="#fff"
+        android:textSize="16sp"
+        android:text="东程序爱上了肯定啦"
+        android:layout_alignBottom="@id/event_disc_more_img"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/event_disc_more_title"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:text="东程序爱上了肯定啦"
+        android:layout_below="@id/event_disc_more_img"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#fff"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/beautyday_title"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <ImageView
+            android:id="@+id/new_date_bg"
+            android:src="@mipmap/new_date"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:scaleType="fitXY" />
+        <TextView
+            android:id="@+id/beautyday_date_month"
+            android:layout_alignLeft="@id/new_date_bg"
+            android:layout_marginLeft="10dp"
+            android:layout_alignBottom="@id/new_date_bg"
+            android:layout_marginTop="3dp"
+            android:background="#fff"
+            android:textColor="#000"
+            android:text="Sept."
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/beautyday_date_day"
+            android:text="29"
+            android:layout_alignBottom="@id/beautyday_date_month"
+            android:textSize="20sp"
+            android:background="#fff"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:layout_toRightOf="@id/beautyday_date_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/beautyday_title_tv"
+            android:text="生活所需，“贵在合适”"
+            android:layout_toRightOf="@id/new_date_bg"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/beautyday_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/beautyday_event_bg"
+            android:src="@mipmap/user_bg"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+        
+        <ImageView
+            android:src="@mipmap/home_shadow"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+        <TextView
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textColor="#fff"
+            android:id="@+id/beautyday_event_title"
+            android:text="对抗虚无荒缪的精神印记"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:paddingLeft="10dp"
+            android:textSize="16sp"
+            android:textColor="#fff"
+            android:layout_below="@id/beautyday_event_title"
+            android:layout_alignLeft="@id/beautyday_event_title"
+            android:id="@+id/beautyday_event_address"
+            android:text="对抗虚无荒缪的精神印记"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:id="@+id/beautyday_theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/beautyday_theme_bg"
+            android:src="@mipmap/user_bg"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <ImageView
+            android:src="@mipmap/home_shadow"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <TextView
+            android:id="@+id/beautyday_theme_title"
+            android:text="一起去“鬼”混"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+</LinearLayout>

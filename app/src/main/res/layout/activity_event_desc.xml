@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context="com.mahao.xiaorizi.activity.EventDescActivity">
+
+<com.mahao.xrzdemo.widget.TitleView
+    android:id="@+id/title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/underLine"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.mahao.xrzdemo.widget.OrderView
+            android:id="@+id/orderview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ScrollView
+            android:id="@+id/event_desc_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/event_desc_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp"
+                    android:scaleType="fitXY" />
+
+
+                <include
+                    android:id="@+id/event_desc_title"
+                    layout="@layout/layout_event_desc_title"/>
+
+
+                <View
+                    android:id="@+id/underLines"
+                    android:layout_width="100dp"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="50dp"
+                    android:background="#000" />
+
+                <FrameLayout
+                    android:id="@+id/event_desc_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </ScrollView>
+        </com.mahao.xrzdemo.widget.OrderView>
+        <include
+            android:visibility="gone"
+            android:id="@+id/event_desc_title_copy"
+            layout="@layout/layout_event_desc_title"/>
+        <View
+            android:layout_below="@id/event_desc_title_copy"
+            android:visibility="gone"
+            android:id="@+id/underLine_copy"
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="50dp"
+            android:background="#000" />
+    </RelativeLayout>
+
+</LinearLayout>

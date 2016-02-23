@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.mahao.xrzdemo.fragment.ClassificitionFragment">
+
+
+    <com.mahao.xrzdemo.widget.TitleView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_class1"
+                style="@style/BigTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="闲时光丶发现丶惊喜"
+                android:textColor="#000" />
+
+
+            <com.mahao.xrzdemo.widget.MyGridView
+                android:id="@+id/gv_class1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="3" />
+
+            <TextView
+                android:id="@+id/tv_class2"
+                style="@style/BigTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="长知识"
+                android:textColor="#000" />
+
+
+            <com.mahao.xrzdemo.widget.MyGridView
+                android:id="@+id/gv_class2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="3" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

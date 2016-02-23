@@ -1,0 +1,51 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.mahao.xiaorizi.fragments.EventDescDiscFragment">
+
+    <TextView
+        android:id="@+id/event_desc_disc_title"
+        android:textColor="#000"
+        android:padding="5dp"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/event_desc_webview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/tv"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:text="猜你喜欢"
+
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/article_more_icon"
+            android:scaleType="centerCrop"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </RelativeLayout>
+
+    <com.mahao.xrzdemo.widget.MyListView
+        android:id="@+id/event_desc_disc_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="5dp"
+
+        />
+
+</LinearLayout>
