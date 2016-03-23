@@ -15,7 +15,7 @@ import com.mahao.xrzdemo.fragment.MoreFragment;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
+public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
 
     private ArrayList<Fragment> fragments;

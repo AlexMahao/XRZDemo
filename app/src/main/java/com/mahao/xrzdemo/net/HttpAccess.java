@@ -11,6 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.mahao.xrzdemo.MyApp;
 import com.mahao.xrzdemo.bean.BroadWood;
+import com.mahao.xrzdemo.bean.City;
 import com.mahao.xrzdemo.bean.Classifi;
 import com.mahao.xrzdemo.bean.Event;
 import com.mahao.xrzdemo.bean.ExploreShop;
@@ -345,6 +346,55 @@ public class HttpAccess {
         VolleyUtils.getInstance().add(request);
 
     }
+
+
+    /**
+     * 获取城市列表
+     * @param handler
+     */
+    public static void getCityList(final Handler handler){
+        int cityId = MyApp.getApp().getCityId();
+        HashMap<String,String> map = getTimeToken();
+        String time = map.get("time");
+        String token = map.get("token");
+
+        String url = String.format(Urls.CITY_LIST, time, token,cityId+"");
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Message message = Message.obtain();
+                try {
+                    JSONObject object = new JSONObject(response);
+                    Log.i("info",response);
+                    List<City> citys = JSON.parseArray(new JSONObject(response).getJSONArray("list").toString(), City.class);
+                    message.what = SUCCESS;
+                    message.obj = citys;
+
+                } catch (JSONException e) {
+                    message.what = FAIL;
+                    e.printStackTrace();
+                }finally {
+                    handler.sendMessage(message);
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Message msg = Message.obtain();
+                msg.what = FAIL;
+                handler.sendMessage(msg);
+            }
+        });
+
+        VolleyUtils.getInstance().add(request);
+
+    }
+
+
+
+
 
 
     /**

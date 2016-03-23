@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * Created by mdw on 2015/12/1.
  */
+
 public class EventDAO extends SQLiteOpenHelper {
 
     private static EventDAO dao;

@@ -25,6 +25,7 @@
         <activity android:name=".ui.ClassDesActivity" />
         <activity android:name=".ui.CollectActivity" />
         <activity android:name=".ui.RecommendActivity" />
+        <activity android:name=".ui.CityListActivity" />
         <activity android:name=".ui.SplashActivity">
 
             <intent-filter>

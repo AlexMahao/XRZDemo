@@ -14,7 +14,7 @@ import com.mahao.xrzdemo.widget.TitleView;
  * Date: 2015-10-09
  * Time: 20:28
  */
-public class RecommendActivity extends AppCompatActivity {
+public class RecommendActivity extends BaseActivity {
 
     private WebView web;
 

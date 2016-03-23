@@ -11,7 +11,7 @@ import com.mahao.xrzdemo.widget.TitleView;
 /**
  * Created by mdw on 2015/11/29.
  */
-public class ClassDesActivity extends AppCompatActivity {
+public class ClassDesActivity extends BaseActivity {
     private String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

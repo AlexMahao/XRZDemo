@@ -19,6 +19,7 @@ public class MyApp extends Application {
     private int cityId  = 101;
 
     private  static MyApp myApp;
+
     private  DisplayImageOptions options;
     @Override
     public void onCreate() {

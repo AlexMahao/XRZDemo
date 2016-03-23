@@ -24,7 +24,7 @@ import java.util.List;
  * Date: 2015-10-09
  * Time: 20:28
  */
-public class CollectActivity extends AppCompatActivity {
+public class CollectActivity extends BaseActivity {
 
 
     private ListView lv;

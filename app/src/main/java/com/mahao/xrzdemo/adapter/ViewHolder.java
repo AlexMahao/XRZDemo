@@ -19,7 +19,7 @@ public class ViewHolder {
 
 
     private Map<Integer, View> viewMap;
-    private View itemView;
+    public View itemView;
 
     public ViewHolder(View itemView) {
         this.itemView = itemView;

@@ -10,7 +10,7 @@ import com.mahao.xrzdemo.R;
 /**
  * Created by mdw on 2015/12/3.
  */
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     private Handler handler = new Handler();
     @Override

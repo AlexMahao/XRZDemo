@@ -36,7 +36,7 @@ import com.umeng.socialize.weixin.media.CircleShareContent;
 import com.umeng.socialize.weixin.media.WeiXinShareContent;
 
 
-public class EventDescActivity extends AppCompatActivity implements View.OnClickListener {
+public class EventDescActivity extends BaseActivity implements View.OnClickListener {
 
 
     final UMSocialService mController = UMServiceFactory

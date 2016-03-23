@@ -17,7 +17,7 @@ import com.mahao.xrzdemo.widget.TitleView;
  * Date: 2015-10-10
  * Time: 10:31
  */
-public class ThemeDescActivity extends AppCompatActivity {
+public class ThemeDescActivity extends BaseActivity {
 
     private String id;
     private ImageView menu;

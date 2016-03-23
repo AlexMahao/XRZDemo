@@ -11,7 +11,7 @@ import com.mahao.xrzdemo.widget.TitleView;
 /**
  * Created by mdw on 2015/11/25.
  */
-public class BroadWoodHeadActivity extends AppCompatActivity {
+public class BroadWoodHeadActivity extends BaseActivity {
 
     private WebView webView;
 

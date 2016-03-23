@@ -1,6 +1,7 @@
 package com.mahao.xrzdemo.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mahao.xrzdemo.R;
+import com.mahao.xrzdemo.ui.CityListActivity;
 import com.mahao.xrzdemo.utils.T;
 import com.mahao.xrzdemo.widget.TitleView;
 
@@ -60,9 +62,9 @@ public class ExploreShopFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                if(position==0){
+                if (position == 0) {
                     titleView.moveUnderLine(false);
-                }else if(position==1){
+                } else if (position == 1) {
                     titleView.moveUnderLine(true);
                 }
             }
@@ -76,6 +78,7 @@ public class ExploreShopFragment extends Fragment {
 
     /**
      * 初始化标题栏
+     *
      * @param view
      */
     private void initTitle(View view) {
@@ -83,7 +86,8 @@ public class ExploreShopFragment extends Fragment {
         titleView.setLeftListener(TitleView.CITY_TITLE, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                T.show(getActivity(), "选择城市");
+               Intent intent = new Intent(getActivity(), CityListActivity.class);
+                getActivity().startActivity(intent);
             }
         });
         titleView.setRightListener(View.VISIBLE, "附近", new View.OnClickListener() {
@@ -96,7 +100,7 @@ public class ExploreShopFragment extends Fragment {
     }
 
 
-    class MyAdapter extends FragmentPagerAdapter{
+    class MyAdapter extends FragmentPagerAdapter {
 
         public MyAdapter(FragmentManager fm) {
             super(fm);

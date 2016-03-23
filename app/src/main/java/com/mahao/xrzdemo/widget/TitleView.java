@@ -97,9 +97,20 @@ public class TitleView extends LinearLayout {
         rl_center.addView(view);
     }
 
+    /**
+     * 设置中心显示的样式
+     * @param
+     */
+    public void setCenterView(String title){
+        TextView centerTitle = (TextView) rl_center.findViewById(R.id.tv_center_title);
+        centerTitle.setVisibility(View.VISIBLE);
+        centerTitle.setText(title);
+
+    }
+
 
     public void setCenterNavigation(){
-        RelativeLayout navigationRl = (RelativeLayout) rl_center.getChildAt(0);
+        RelativeLayout navigationRl = (RelativeLayout) rl_center.getChildAt(1);
         if(navigationRl!=null){
             navigationRl.setVisibility(VISIBLE);
             underline = navigationRl.findViewById(R.id.underLine);
