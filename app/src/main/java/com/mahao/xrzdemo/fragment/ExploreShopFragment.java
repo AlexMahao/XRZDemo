@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * 探店activity
  */
-public class ExploreShopFragment extends Fragment {
+public class ExploreShopFragment extends BaseFragment {
 
 
     private List<Fragment> fragments;
@@ -86,8 +86,8 @@ public class ExploreShopFragment extends Fragment {
         titleView.setLeftListener(TitleView.CITY_TITLE, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(getActivity(), CityListActivity.class);
-                getActivity().startActivity(intent);
+                intent2Activity( CityListActivity.class);
+
             }
         });
         titleView.setRightListener(View.VISIBLE, "附近", new View.OnClickListener() {

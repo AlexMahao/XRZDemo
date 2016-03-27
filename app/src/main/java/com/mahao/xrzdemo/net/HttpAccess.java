@@ -44,10 +44,12 @@ public class HttpAccess {
      * @param handler
      */
     public static void exploreShopePost(int city,int page,final Handler handler){
+
+        city = MyApp.getApp().getCityId();
         HashMap<String,String> map = getTimeToken();
         String time = map.get("time");
         String token = map.get("token");
-        String url = String.format(Urls.EXPLORE_SHOP,  city+"", page+"", time,token);
+        String url = String.format(Urls.EXPLORE_SHOP, city, page+"", time,token);
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -91,7 +93,7 @@ public class HttpAccess {
         String time = map.get("time");
         String token = map.get("token");
 
-        String url = String.format(Urls.EVENT_LIST, id, "" + time, token);
+        String url = String.format(Urls.EVENT_LIST, id, MyApp.getApp().getCityId(),"" + time, token);
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -135,7 +137,7 @@ public class HttpAccess {
         HashMap<String,String> map = getTimeToken();
         String time = map.get("time");
         String token = map.get("token");
-        String url = String.format(Urls.EXPLORE_SPLICAL_LIST,page+"",""+time,token);
+        String url = String.format(Urls.EXPLORE_SPLICAL_LIST,MyApp.getApp().getCityId(),page+"",""+time,token);
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -183,13 +185,14 @@ public class HttpAccess {
         HashMap<String,String> map = getTimeToken();
         String time = map.get("time");
         String token = map.get("token");
-        String url = String.format(Urls.BROAD_WOOD,page, "" + time, token);
+        String url = String.format(Urls.BROAD_WOOD,page,MyApp.getApp().getCityId(), "" + time, token);
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Message message = Message.obtain();
                 try {
 
+                    Log.i("web",response);
                     BroadWood object = JSON.parseObject(new JSONObject(response).toString(), BroadWood.class);
 
 
@@ -233,6 +236,8 @@ public class HttpAccess {
             public void onResponse(String response) {
                 Message message = Message.obtain();
                 try {
+
+                    Log.i("web",response);
 
                     Event object = JSON.parseObject(new JSONObject(response).getJSONObject("data").toString(), Event.class);
 

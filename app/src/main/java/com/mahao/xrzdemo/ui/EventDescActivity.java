@@ -2,14 +2,19 @@ package com.mahao.xrzdemo.ui;
 
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,6 +69,8 @@ public class EventDescActivity extends BaseActivity implements View.OnClickListe
     private boolean isCollect;
     private TextView share;
 
+
+    private int moveX;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +80,13 @@ public class EventDescActivity extends BaseActivity implements View.OnClickListe
         event = getIntent().getParcelableExtra("event");
 
         isCollect = EventDAO.getInstance(this).isExsit(event.getId());
+
+
+        WindowManager manager = this.getWindowManager();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        manager.getDefaultDisplay().getMetrics(outMetrics);
+        moveX= outMetrics.widthPixels/2;
+
         initTitleView();
         initView();
         initFragment();
@@ -147,10 +161,10 @@ public class EventDescActivity extends BaseActivity implements View.OnClickListe
 //        toRightAnimation.setDuration(500);
 //        toRightAnimation.setFillAfter(true);
 
-        toRight = ObjectAnimator.ofFloat(underLine, "translationX", 0.0f, 350.0f).setDuration(500);
-        toLeft = ObjectAnimator.ofFloat(underLine, "translationX", 350.0f, 0.0f).setDuration(500);
-        toRightCopy = ObjectAnimator.ofFloat(underLineCopy, "translationX", 0.0f, 350.0f).setDuration(500);
-        toLeftCopy = ObjectAnimator.ofFloat(underLineCopy, "translationX", 350.0f, 0.0f).setDuration(500);
+        toRight = ObjectAnimator.ofFloat(underLine, "translationX", 0.0f, moveX).setDuration(500);
+        toLeft = ObjectAnimator.ofFloat(underLine, "translationX", moveX, 0.0f).setDuration(500);
+        toRightCopy = ObjectAnimator.ofFloat(underLineCopy, "translationX", 0.0f, moveX).setDuration(500);
+        toLeftCopy = ObjectAnimator.ofFloat(underLineCopy, "translationX", moveX, 0.0f).setDuration(500);
 //        toLeftAnimation = new TranslateAnimation(350,0,0,0);
 //        toLeftAnimation.setDuration(500);
 //        toLeftAnimation.setFillAfter(true);
@@ -206,7 +220,16 @@ public class EventDescActivity extends BaseActivity implements View.OnClickListe
         }
 
         underLine = findViewById(R.id.underLines);
+        ViewGroup.LayoutParams layoutParams =
+                underLine.getLayoutParams();
+        layoutParams.width = moveX;
+        underLine.setLayoutParams(layoutParams);
         underLineCopy = findViewById(R.id.underLine_copy);
+        ViewGroup.LayoutParams layoutParams1 =
+                underLineCopy.getLayoutParams();
+        layoutParams1.width = moveX;
+        underLineCopy.setLayoutParams(layoutParams1);
+
     }
 
     private void initFragment() {

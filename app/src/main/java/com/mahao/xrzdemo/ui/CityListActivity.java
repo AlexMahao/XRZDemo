@@ -1,6 +1,7 @@
 package com.mahao.xrzdemo.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -19,7 +21,9 @@ import com.mahao.xrzdemo.adapter.BaseAppAdapter;
 import com.mahao.xrzdemo.adapter.ViewHolder;
 import com.mahao.xrzdemo.bean.City;
 import com.mahao.xrzdemo.net.HttpAccess;
+import com.mahao.xrzdemo.utils.AppManager;
 import com.mahao.xrzdemo.utils.T;
+import com.mahao.xrzdemo.widget.TitleBar;
 import com.mahao.xrzdemo.widget.TitleView;
 
 import java.util.ArrayList;
@@ -71,6 +75,7 @@ public class CityListActivity extends  BaseActivity {
         setContentView(R.layout.activity_city_list);
 
         initTitle();
+
         gv_out = ((GridView) findViewById(R.id.gv_city_list_out));
         gv_in = ((GridView) findViewById(R.id.gv_city_list_in));
 
@@ -81,27 +86,54 @@ public class CityListActivity extends  BaseActivity {
         inAdapter = new MyAdapter(inCity,R.layout.item_city_list,getApplicationContext());
 
         gv_out.setAdapter(outAdapter);
+        gv_out.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MyApp.getApp().setCityId(Integer.parseInt(outCity.get(position).getId()));
+                MyApp.getApp().setCityName(outCity.get(position).getName());
+                MyApp.getApp().write2sp("cityId",outCity.get(position).getId()+"");
+                MyApp.getApp().write2sp("cityName",outCity.get(position).getName());
+
+                AppManager.getAppManager().finishAllActivity();
+
+                Intent intent = new Intent(CityListActivity.this,MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
         gv_in.setAdapter(inAdapter);
+
+        gv_in.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MyApp.getApp().setCityId(Integer.parseInt(inCity.get(position).getId()));
+                MyApp.getApp().setCityName(inCity.get(position).getName());
+                MyApp.getApp().write2sp("cityId",inCity.get(position).getId()+"");
+                MyApp.getApp().write2sp("cityName",inCity.get(position).getName());
+
+                AppManager.getAppManager().finishAllActivity();
+
+                Intent intent = new Intent(CityListActivity.this,MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
 
         HttpAccess.getCityList(handler);
 
     }
 
-    /**
-     * 设置标题
-     */
     private void initTitle() {
-        TitleView titleView = (TitleView) findViewById(R.id.title);
-        titleView.setLeftListener(TitleView.BACK_TILTE, new View.OnClickListener() {
+        TitleBar titleBar = (TitleBar) findViewById(R.id.title);
+        titleBar.setTitleBarClickListener(new TitleBar.TitleBarClickListener(){
+
             @Override
-            public void onClick(View v) {
+            public void onLeftClick() {
                 onBackPressed();
             }
         });
-
-        titleView.setRightListener(View.GONE,null,null);
-
-        titleView.setCenterView("城市切换");
     }
 
 

@@ -1,5 +1,6 @@
 package com.mahao.xrzdemo.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
@@ -15,5 +16,10 @@ public class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
         progress= new ProgressDialogUtil();
         progress.createDialog(getActivity());
+    }
+
+    public void intent2Activity(Class clazz){
+        Intent intent = new Intent(getActivity(),clazz);
+        startActivity(intent);
     }
 }

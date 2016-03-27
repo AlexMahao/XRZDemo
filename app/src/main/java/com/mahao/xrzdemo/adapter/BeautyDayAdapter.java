@@ -30,23 +30,34 @@ public class BeautyDayAdapter extends BaseAppAdapter<ExploreShop> {
     public void bindData(ViewHolder viewHolder, ExploreShop entity, ViewGroup parent) {
         ((TextView) viewHolder.getView(R.id.beautyday_date_month)).setText(DateUtils.getMonth(entity.getDate()));
         ((TextView) viewHolder.getView(R.id.beautyday_date_day)).setText(DateUtils.getDay(entity.getDate()));
-        ((TextView) viewHolder.getView(R.id.beautyday_title_tv)).setText(entity.getEvents().get(0).getFeeltitle());
-        /**
-         * 加载事件
-         */
-         final Event event = entity.getEvents().get(0);
-        viewHolder.loadSimple(R.id.beautyday_event_bg, event.getImgs().get(0));
-        ((TextView) viewHolder.getView(R.id.beautyday_event_title)).setText(event.getTitle());
-        ((TextView) viewHolder.getView(R.id.beautyday_event_address)).setText(event.getAddress());
 
-        viewHolder.getView(R.id.beautyday_event_bg).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, EventDescActivity.class);
-                intent.putExtra("event", event);
-               context.startActivity(intent);
-            }
-        });
+        viewHolder.getView(R.id.beautyday_theme).setVisibility(View.VISIBLE);
+        viewHolder.getView(R.id.beautyday_event).setVisibility(View.VISIBLE);
+        if(entity.getEvents().size()==0){
+            viewHolder.getView(R.id.beautyday_event).setVisibility(View.GONE);
+        }else{
+            /**
+             * 加载事件
+             */
+            ((TextView) viewHolder.getView(R.id.beautyday_title_tv)).setText(entity.getEvents().get(0).getFeeltitle());
+
+            final Event event = entity.getEvents().get(0);
+            viewHolder.loadSimple(R.id.beautyday_event_bg, event.getImgs().get(0));
+            ((TextView) viewHolder.getView(R.id.beautyday_event_title)).setText(event.getTitle());
+            ((TextView) viewHolder.getView(R.id.beautyday_event_address)).setText(event.getAddress());
+
+            viewHolder.getView(R.id.beautyday_event_bg).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, EventDescActivity.class);
+                    intent.putExtra("event", event);
+                    context.startActivity(intent);
+                }
+            });
+        }
+        //((TextView) viewHolder.getView(R.id.beautyday_title_tv)).setText(entity.getEvents().get(0).getFeeltitle());
+
+
         /**
          * 加载主题
          */

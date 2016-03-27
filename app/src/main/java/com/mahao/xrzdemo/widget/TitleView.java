@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.mahao.xrzdemo.MyApp;
 import com.mahao.xrzdemo.R;
 
 /**
@@ -32,6 +33,7 @@ public class TitleView extends LinearLayout {
     private TranslateAnimation startAnim;
     private TranslateAnimation endAnim;
     private boolean isFirst;
+    private TextView mCityNameTextView;
 
 
     public TitleView(Context context, AttributeSet attrs) {
@@ -57,6 +59,8 @@ public class TitleView extends LinearLayout {
      * 查找控件
      */
     private void initView() {
+        mCityNameTextView = ((TextView) findViewById(R.id.titleView_city));
+        mCityNameTextView.setText(MyApp.getApp().getCityName());
         ll_left = ((LinearLayout) findViewById(R.id.title_ll_left));
         rl_left = ((RelativeLayout) findViewById(R.id.rl_left_title));
         left_back = ((ImageView) findViewById(R.id.title_left_img));

@@ -91,18 +91,6 @@ public class EventDescDiscFragment extends Fragment {
         super.onHiddenChanged(hidden);
     }
 
-    /**
-     * 修改图片尺寸以及字体颜色
-     * @return
-     */
-    public String  zoomImg(){
-        String s = event.getMobileURL();
-        String ss = s.replaceAll("(width=\")\\d+(\")", "$1100%$2")
-                .replaceAll("(height=\")\\d+(\")", "$1350$2")
-                .replaceAll("<p>(.*)</p>", "<p><font color=\"#999999\">$1</font></p> ");
-
-        return ss;
-    }
 
     public void setWeb(WebView paramWebView)
     {

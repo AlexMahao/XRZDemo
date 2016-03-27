@@ -58,10 +58,15 @@ public class ClassificitionFragment extends BaseFragment {
     private void initData() {
         classTitle1.setText(classes.get(0).getTitle());
         gv1.setAdapter(new ClassAdapter(classes.get(0).getTags(), R.layout.item_gv, getActivity()));
-        classTitle2.setText(classes.get(1).getTitle());
-        gv2.setAdapter(new ClassAdapter(classes.get(1).getTags(), R.layout.item_gv, getActivity()));
         gv1.setFocusable(false);
-        gv2.setFocusable(false);
+        if(classes.size()>1) {
+            classTitle2.setText(classes.get(1).getTitle());
+            gv2.setAdapter(new ClassAdapter(classes.get(1).getTags(), R.layout.item_gv, getActivity()));
+
+            gv2.setFocusable(false);
+        }else{
+            classTitle2.setVisibility(View.GONE);
+        }
         scrollView.smoothScrollBy(0,20);
 
 

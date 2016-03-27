@@ -20,7 +20,7 @@ public class PTRListViewUtil {
         proxy.setPullLabel("下拉刷新...");
         proxy.setReleaseLabel("放开刷新...");
         proxy.setRefreshingLabel("正在努力的刷新中...");
-        proxy.setLastUpdatedLabel("最新更新时间：MM月dd日 hh:mm:ss");
+       // proxy.setLastUpdatedLabel("最新更新时间：MM月dd日 hh:mm:ss");
 
         //上拉加载
         ILoadingLayout Upproxy = lv.getLoadingLayoutProxy(false, true);
@@ -28,7 +28,7 @@ public class PTRListViewUtil {
         Upproxy.setPullLabel("上拉加载...");
         Upproxy.setReleaseLabel("放开加载...");
         Upproxy.setRefreshingLabel("正在努力的加载更多中...");
-        Upproxy.setLastUpdatedLabel("最新加载时间：MM月dd日 hh:mm:ss");
+       // Upproxy.setLastUpdatedLabel("最新加载时间：MM月dd日 hh:mm:ss");
     }
 
 

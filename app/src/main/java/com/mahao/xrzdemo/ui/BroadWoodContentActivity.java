@@ -14,6 +14,7 @@ import com.mahao.xrzdemo.bean.Event;
 import com.mahao.xrzdemo.net.HttpAccess;
 import com.mahao.xrzdemo.utils.T;
 import com.mahao.xrzdemo.utils.WebParser;
+import com.mahao.xrzdemo.widget.TitleBar;
 import com.mahao.xrzdemo.widget.TitleView;
 
 /**
@@ -51,6 +52,7 @@ public class BroadWoodContentActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_experience_content);
+        initTitleView();
         eid = getIntent().getIntExtra("eid",0);
         webView = (LinearLayout) findViewById(R.id.webview_experience);
         HttpAccess.getExperienceEvent(hanler,eid);
@@ -63,22 +65,17 @@ public class BroadWoodContentActivity extends BaseActivity {
      * 初始化标题
      */
     private void initTitleView() {
-
-        TitleView titleView = (TitleView) findViewById(R.id.title);
-        titleView.setLeftListener(TitleView.BACK_TILTE, new View.OnClickListener() {
+        ((TitleBar) findViewById(R.id.titleBar)).setTitleBarClickListener(new TitleBar.TitleBarClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onLeftClick() {
                 onBackPressed();
             }
-        });
 
-        titleView.setRightListener(View.VISIBLE, "分享", new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                T.show(getApplicationContext(), "fenxiang");
+            public void onRightClick() {
+                T.show(getApplicationContext(),"分享");
             }
         });
-
 
     }
 

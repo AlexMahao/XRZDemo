@@ -4,6 +4,7 @@ package com.mahao.xrzdemo.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,22 +14,26 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mahao.xrzdemo.MyApp;
 import com.mahao.xrzdemo.R;
 import com.mahao.xrzdemo.ui.CollectActivity;
+import com.mahao.xrzdemo.ui.LoginActivity;
 import com.mahao.xrzdemo.ui.RecommendActivity;
+import com.mahao.xrzdemo.ui.ShowUserActivity;
 import com.mahao.xrzdemo.utils.T;
 import com.mahao.xrzdemo.widget.TitleView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * 我的
  */
-public class MoreFragment extends Fragment {
+public class MoreFragment extends BaseFragment implements View.OnClickListener {
 
 
-    private View avatarImg;
-    private int[] icons = {R.mipmap.pcenter, R.mipmap.orderform, R.mipmap.collect, R.mipmap.tuijianyy, R.mipmap.yaoyiyaoicon};
+    private ImageView avatarImg;
+    private int[] icons = {R.mipmap.pcenter, R.mipmap.orderform, R.mipmap.collect, };
 
-    private String[] titles = {"个人中心", "我的订单", "我的收藏", "应用推荐", "摇一摇    每天都有小惊喜"};
+    private String[] titles = {"个人中心", "我要吐槽", "我的收藏"};
     private ListView lv;
 
 
@@ -38,8 +43,18 @@ public class MoreFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_more, container, false);
         initTitle(view);
-        avatarImg = view.findViewById(R.id.more_avatar);
+        avatarImg = (ImageView) view.findViewById(R.id.more_avatar);
         initListView(view);
+
+        if ( MyApp.user == null) {
+            //未登录或注册
+        } else {
+            if (!TextUtils.isEmpty( MyApp.user.getUserIcon())) {
+                ImageLoader.getInstance().displayImage( MyApp.user.getUserIcon(), avatarImg);
+            }
+        }
+
+        avatarImg.setOnClickListener(this);
         return view;
     }
 
@@ -52,6 +67,19 @@ public class MoreFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
+                    case 0:
+                        //个人信息
+                        if ( MyApp.user == null) {
+                          T.show(getActivity().getApplicationContext(),"请先登录");
+                        }else{
+                            intent2Activity(ShowUserActivity.class);
+                        }
+
+                        break;
+                    case 1:
+
+
+                        break;
                     case 2:
                         Intent intent = new Intent(getActivity(), CollectActivity.class);
                         startActivity(intent);
@@ -79,6 +107,15 @@ public class MoreFragment extends Fragment {
                 T.show(getActivity(), "设置");
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if ( MyApp.user == null) {
+            intent2Activity(LoginActivity.class);
+        }else{
+            intent2Activity(ShowUserActivity.class);
+        }
     }
 
 

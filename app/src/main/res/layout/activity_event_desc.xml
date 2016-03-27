@@ -11,11 +11,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/underLine"
-        />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -48,9 +43,8 @@
 
                 <View
                     android:id="@+id/underLines"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="50dp"
                     android:background="#000" />
 
                 <FrameLayout
@@ -64,14 +58,20 @@
             android:visibility="gone"
             android:id="@+id/event_desc_title_copy"
             layout="@layout/layout_event_desc_title"/>
-        <View
+        <LinearLayout
             android:layout_below="@id/event_desc_title_copy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <View
+
             android:visibility="gone"
             android:id="@+id/underLine_copy"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_marginLeft="50dp"
             android:background="#000" />
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>

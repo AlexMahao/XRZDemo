@@ -6,6 +6,8 @@ import android.view.View;
 import android.webkit.WebView;
 
 import com.mahao.xrzdemo.R;
+import com.mahao.xrzdemo.utils.T;
+import com.mahao.xrzdemo.widget.TitleBar;
 import com.mahao.xrzdemo.widget.TitleView;
 
 /**
@@ -22,6 +24,8 @@ public class BroadWoodHeadActivity extends BaseActivity {
         setContentView(R.layout.activity_experience_head);
         webView = ((WebView) findViewById(R.id.webview_experience));
         webView.loadUrl(getIntent().getStringExtra("mobileURL"));
+
+        initTitleView();
     }
 
 
@@ -29,12 +33,15 @@ public class BroadWoodHeadActivity extends BaseActivity {
      * 初始化标题
      */
     private void initTitleView() {
-
-        TitleView titleView = (TitleView) findViewById(R.id.title);
-        titleView.setLeftListener(TitleView.BACK_TILTE, new View.OnClickListener() {
+        ((TitleBar) findViewById(R.id.titleBar)).setTitleBarClickListener(new TitleBar.TitleBarClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onLeftClick() {
                 onBackPressed();
+            }
+
+            @Override
+            public void onRightClick() {
+                T.show(getApplicationContext(),"分享");
             }
         });
 
