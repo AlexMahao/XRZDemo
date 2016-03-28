@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#3F51B5</color>
-    <color name="colorAccent">#3F51B5</color>
+    <color name="colorPrimary">#318fff</color>
+    <color name="colorPrimaryDark">#318fff</color>
+    <color name="colorAccent">#318fff</color>
 
     <color name="underLine">#666</color>
+    <color name="gray_small">#ebebeb</color>
+
+    <!-- 背景颜色 淡蓝色 -->
+    <color name="bg_blue">#eef4fb</color>
+
+    <!-- 按钮颜色 深蓝色 -->
+    <color name="blue">#318fff</color>
+
+    <color name="gray_menu">#f6f6f6</color>
+    <color name="fff">#fff</color>
 </resources>

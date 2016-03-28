@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-
 import com.mahao.xrzdemo.MyApp;
 import com.mahao.xrzdemo.R;
 import com.mahao.xrzdemo.bean.User;
@@ -52,7 +51,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         findViewById(R.id.btn_forget_password).setOnClickListener(this);
 
         btn_login = ((Button) findViewById(R.id.btn_login));
-
         btn_login.setOnClickListener(this);
 
     }

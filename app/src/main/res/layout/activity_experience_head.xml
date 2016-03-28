@@ -9,8 +9,7 @@
         android:id="@+id/titleBar"
         app:leftType="back"
         app:centerType="gone"
-        app:rightType="customMenu"
-        app:rightText="分享"
+        app:rightType="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

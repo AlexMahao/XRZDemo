@@ -14,10 +14,15 @@
         android:layout_weight="1"
         />
 
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/gray_small" />
     <RadioGroup
         android:id="@+id/rg_main_menu"
         android:orientation="horizontal"
-        android:background="#ccc"
+        android:background="@color/gray_menu"
         android:layout_width="match_parent"
         android:layout_height="48dp">
         <RadioButton

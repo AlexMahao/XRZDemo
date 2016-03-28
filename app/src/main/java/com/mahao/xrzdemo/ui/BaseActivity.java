@@ -1,10 +1,7 @@
 package com.mahao.xrzdemo.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 
 import com.mahao.xrzdemo.utils.AppManager;
@@ -15,7 +12,7 @@ import com.mahao.xrzdemo.utils.AppManager;
  */
 public class BaseActivity  extends AppCompatActivity{
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppManager.getAppManager().addActivity(this);
     }

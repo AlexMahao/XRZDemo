@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="@color/bg_blue"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -56,14 +56,14 @@
 
 
         <Button
-            android:textColor="#fff"
             android:background="@drawable/btn"
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="登录"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/fff" />
 
 
         <LinearLayout
@@ -80,13 +80,13 @@
                 android:background="@drawable/btn"
                 android:layout_height="wrap_content"
                 android:text="忘记密码"
-                android:textColor="#fff"
+                android:textColor="@color/fff"
                 />
 
 
             <Button
                 android:layout_marginLeft="20dp"
-                android:textColor="#fff"
+                android:textColor="@color/fff"
                 android:background="@drawable/btn"
                 android:id="@+id/btn_regist"
                 android:layout_width="wrap_content"

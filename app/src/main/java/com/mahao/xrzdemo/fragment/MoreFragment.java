@@ -3,7 +3,6 @@ package com.mahao.xrzdemo.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import com.mahao.xrzdemo.MyApp;
 import com.mahao.xrzdemo.R;
 import com.mahao.xrzdemo.ui.CollectActivity;
+import com.mahao.xrzdemo.ui.FeedBackActivity;
 import com.mahao.xrzdemo.ui.LoginActivity;
 import com.mahao.xrzdemo.ui.RecommendActivity;
 import com.mahao.xrzdemo.ui.ShowUserActivity;
@@ -42,7 +42,6 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_more, container, false);
-        initTitle(view);
         avatarImg = (ImageView) view.findViewById(R.id.more_avatar);
         initListView(view);
 
@@ -77,7 +76,11 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener {
 
                         break;
                     case 1:
-
+                        if ( MyApp.user == null) {
+                            T.show(getActivity().getApplicationContext(),"请先登录");
+                        }else{
+                            intent2Activity(FeedBackActivity.class);
+                        }
 
                         break;
                     case 2:
@@ -104,7 +107,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener {
         titleView.setRightListener(View.VISIBLE, "设置", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                T.show(getActivity(), "设置");
+                T.show(getActivity().getApplicationContext(), "设置");
             }
         });
     }

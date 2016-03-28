@@ -2,10 +2,8 @@ package com.mahao.xrzdemo.ui;
 
 
 import android.animation.ObjectAnimator;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +12,6 @@ import android.view.WindowManager;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,27 +22,14 @@ import com.mahao.xrzdemo.bean.Event;
 import com.mahao.xrzdemo.db.EventDAO;
 import com.mahao.xrzdemo.fragment.EventDescDescFragment;
 import com.mahao.xrzdemo.fragment.EventDescDiscFragment;
+import com.mahao.xrzdemo.utils.ShareUtils;
 import com.mahao.xrzdemo.widget.OrderView;
 import com.mahao.xrzdemo.widget.TitleView;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.umeng.socialize.bean.SHARE_MEDIA;
-import com.umeng.socialize.controller.UMServiceFactory;
-import com.umeng.socialize.controller.UMSocialService;
-import com.umeng.socialize.media.QQShareContent;
-import com.umeng.socialize.media.QZoneShareContent;
-import com.umeng.socialize.media.UMImage;
-import com.umeng.socialize.sso.QZoneSsoHandler;
-import com.umeng.socialize.sso.UMQQSsoHandler;
-import com.umeng.socialize.weixin.controller.UMWXHandler;
-import com.umeng.socialize.weixin.media.CircleShareContent;
-import com.umeng.socialize.weixin.media.WeiXinShareContent;
 
 
-public class EventDescActivity extends BaseActivity implements View.OnClickListener {
+public class EventDescActivity extends BaseActivity implements View.OnClickListener, ShareUtils.OnShareListener {
 
-
-    final UMSocialService mController = UMServiceFactory
-            .getUMSocialService("com.umeng.share");
 
 
     private ImageView titleImg;
@@ -68,6 +52,8 @@ public class EventDescActivity extends BaseActivity implements View.OnClickListe
     private TextView collect;
     private boolean isCollect;
     private TextView share;
+
+    private ShareUtils shareUtils;
 
 
     private int moveX;
@@ -92,15 +78,9 @@ public class EventDescActivity extends BaseActivity implements View.OnClickListe
         initFragment();
         initAnimation();
 
-        initShare();
-        setShareContent();
-
+        shareUtils = new ShareUtils(this,event,this);
     }
 
-    private void initShare() {
-        addWXPlatform();
-        addQQQZonePlatform();
-    }
 
 
 
@@ -129,9 +109,7 @@ public class EventDescActivity extends BaseActivity implements View.OnClickListe
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mController.getConfig().setPlatforms(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE,
-                        SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE);
-                mController.openShare(EventDescActivity.this, false);
+              shareUtils.share();
 
             }
         });
@@ -282,107 +260,8 @@ public class EventDescActivity extends BaseActivity implements View.OnClickListe
     }
 
 
-
-    /**
-     * @功能描述 : 添加微信平台分享
-     * @return
-     */
-    private void addWXPlatform() {
-        // 注意：在微信授权的时候，必须传递appSecret
-        // wx967daebe835fbeac是你在微信开发平台注册应用的AppID, 这里需要替换成你注册的AppID
-        String appId = "wx967daebe835fbeac";
-        String appSecret = "5bb696d9ccd75a38c8a0bfe0675559b3";
-        // 添加微信平台
-        UMWXHandler wxHandler = new UMWXHandler(this, appId, appSecret);
-        wxHandler.addToSocialSDK();
-
-        // 支持微信朋友圈
-        UMWXHandler wxCircleHandler = new UMWXHandler(this, appId, appSecret);
-        wxCircleHandler.setToCircle(true);
-        wxCircleHandler.addToSocialSDK();
-    }
-
-    /**
-     * @功能描述 : 添加QQ平台支持 QQ分享的内容， 包含四种类型， 即单纯的文字、图片、音乐、视频. 参数说明 : title, summary,
-     *       image url中必须至少设置一个, targetUrl必须设置,网页地址必须以"http://"开头 . title :
-     *       要分享标题 summary : 要分享的文字概述 image url : 图片地址 [以上三个参数至少填写一个] targetUrl
-     *       : 用户点击该分享时跳转到的目标地址 [必填] ( 若不填写则默认设置为友盟主页 )
-     * @return
-     */
-    private void addQQQZonePlatform() {
-        String appId = "100424468";
-        String appKey = "c7394704798a158208a74ab60104f0ba";
-        // 添加QQ支持, 并且设置QQ分享内容的target url
-        UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(this,
-                appId, appKey);
-        qqSsoHandler.setTargetUrl(event.getShareURL());
-        qqSsoHandler.addToSocialSDK();
-
-        // 添加QZone平台
-        QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(this, appId, appKey);
-        qZoneSsoHandler.addToSocialSDK();
-    }
-
-    /**
-     * 根据不同的平台设置不同的分享内容</br>
-     */
-    private void setShareContent() {
-
-        mController.setShareContent(event.getDetail());
-
-
-        UMImage urlImage = new UMImage(this,event.getImgs().get(0)
-                );
-        // UMImage resImage = new UMImage(getActivity(), R.drawable.icon);
-
-
-        // UMEmoji emoji = new UMEmoji(getActivity(),
-        // "http://www.pc6.com/uploadimages/2010214917283624.gif");
-        // UMEmoji emoji = new UMEmoji(getActivity(),
-        // "/storage/sdcard0/emoji.gif");
-
-        WeiXinShareContent weixinContent = new WeiXinShareContent();
-        weixinContent
-                .setShareContent(event.getDetail());
-        weixinContent.setTitle(event.getTitle());
-        weixinContent.setTargetUrl(event.getShareURL());
-        weixinContent.setShareMedia(urlImage);
-        mController.setShareMedia(weixinContent);
-
-        // 设置朋友圈分享的内容
-        CircleShareContent circleMedia = new CircleShareContent();
-        circleMedia
-                .setShareContent(event.getDetail());
-        circleMedia.setTitle(event.getTitle());
-        circleMedia.setShareMedia(urlImage);
-        // circleMedia.setShareMedia(uMusic);
-        // circleMedia.setShareMedia(video);
-        circleMedia.setTargetUrl(event.getShareURL());
-        mController.setShareMedia(circleMedia);
-
-        UMImage qzoneImage = new UMImage(this,
-                event.getImgs().get(0));
-        qzoneImage
-                .setTargetUrl(event.getShareURL());
-
-        // 设置QQ空间分享内容
-        QZoneShareContent qzone = new QZoneShareContent();
-        qzone.setShareContent(event.getDetail());
-        qzone.setTargetUrl(event.getShareURL());
-        qzone.setTitle(event.getTitle());
-        qzone.setShareMedia(urlImage);
-        // qzone.setShareMedia(uMusic);
-        mController.setShareMedia(qzone);
-
-
-        QQShareContent qqShareContent = new QQShareContent();
-        qqShareContent.setShareContent(event.getDetail());
-        qqShareContent.setTitle(event.getTitle());
-        qqShareContent.setShareMedia(urlImage);
-        qqShareContent.setTargetUrl(event.getShareURL());
-        mController.setShareMedia(qqShareContent);
-
-
+    @Override
+    public void onResponse(boolean isShare) {
 
     }
 }
